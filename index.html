@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jelle Kindt</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: courier;
+      background-color: #195414;
+      color: white;
+    }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+color: white;
+    }
+
+    nav {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 10px;
+      padding: 0 1rem 3rem;
+    }
+
+    .card {
+      background: white;
+      color: #195414;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      text-align: center;
+font-size: 0.8rem;
+    }
+
+    .card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .popup {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      display: none;
+    }
+
+    .popup img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 4px solid white;
+    }
+
+    #contact {
+      text-align: center;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>JELLE KINDT</h1>
+    <p></p>
+  </header>
+
+  <nav>
+    <a href="index.html">Projects</a>
+<a href="print.html">Print</a>
+
+<a href="figure.html">Figure</a>
+<a href="comics.html">Comics</a>
+<a href="kozine.html">KoZine</a>
+<a href="about.html">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="projects" class="grid"></section>
+
+  <section id="contact">
+    <h2></h2>
+    <p>jelle_kindt@hotmail.com</p>
+  </section>
+
+  <div class="popup" id="popup" onclick="closePopup()">
+    <img id="popupImage" src="" alt="Full Image"/>
+  </div>
+
+  <script>
+    const projects = [
+      
+      { title: "Vitrine Ensor, Tuig, 2024", image: "https://cdn.uc.assets.prezly.com/bb59341b-befb-4c23-bacd-c5803493a03d/Illustrator%20Jelle%20Kindt%20tekent%20de%20Ensor%20Vitrine%20van%20Erik%20Tonen%20Books%20%20(c)%20Jens%20Dawn%20.JPG" },
+
+{ title: "Expo Briesspace: 1,8 kubieke meter dwaalster (2021)", image: "https://www.thebriesspace.be/wp-content/uploads/2021/05/Jelle-Kindt.jpg" },
+      { title: "Meat the Real Me", image: "https://komikaze.hr/wp-content/uploads/2019/04/meat-the-real-me_2_page7.jpg" },
+
+{ title: "Rhisorama, 2020, Extrapool", image: "https://i.etsystatic.com/19618280/r/il/3f93a3/2124786238/il_fullxfull.2124786238_nfl4.jpg" },
+
+{ title: "Expo Kornel 2022", image: "https://lh3.googleusercontent.com/pw/AP1GczMlaKtRgujEFy_Qfrpv3qDSI2tDnT4O3GpC3fddW9moJuOVbfl9fk11V3dN-Rue_yHErTTf3v8B_OC4syfMp0V8JpaC_e8tsMxWZrzdCVJXFRrr_6AJ7ho1tI78KuNWYfFyU91oaJYlyteRktT1EO56dlA=w1158-h1738-s-no-gm?authuser=0" },
+
+{ title: "Expo Kornel 2022", image: "https://lh3.googleusercontent.com/pw/AP1GczPRE58Q4vbExeSoBmwPeHyUM9mkQmLi4bba2jtipCx1hnB14xqCDswivAABlLNQzocd6wgTSqFbAfM1DR2Yn23hDp30P0sbSBH576TJ2_xgKpQf0OkSNptIk26_pWDnPNfeRo7Mdng2Cx4FYhXmtbQ-40s=w2608-h1738-s-no-gm?authuser=0" },
+      
+{ title: "ZaaM,2022", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEji3ekkR15oxZ1iwEIdY9I9fxINjY1H39yLumUKHMEdCgs26wFQ89Nq6ztYYxQe14DKDQs0BptX3E6ExmrmJrQHCnq1UP-ImuZb7yM5jwnZOo2--z7X2fmZfp0B4EA5W8B9opXLBrnx7RqgVxVHjirPlAvj58l6PE2oYh3XxrYH6TN4itbkNjgqO-D7/s6931/zaam.jpg" },
+
+{ title: "Gathering, screenprint, 2020", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglm6MX7nVleQ-CL1Ty8cNFrHX78cfPVQDaf3GGz6Ponc7pm8zXV5LISiqL5B-eEhK3ldDWPVcSls1gt3dyj_A-6yCcmxJrPur4g9C8xG9Vt1sHhcatx3M-z3tfBMu9joIEm6K67wT2hao/s3077/gathering_jellekindt.jpg" },
+ 
+{ title: "Comic festival Hamburg, 2020", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4P1f1LnEjambXWjQ7rtyHEg8lcRDjv_EuLWaYIn86dSqQsRq-9OGLCXzxeUm8KEYdjDgQDg3R-eL-vuFrK0k9Li6Dugqx2ObUCkKAwepXjKNM2-13PCscAWN0dzxwaJAUYd5JX8WVDIHWbiKSeTv0q4YzdtAvaTyTbqjykG1KNWBMUiZd8Xd8Lvb33og/s1123/Afbeelding2_Hamburg.jpg" },    
+
+{ title: "Comic festival Hamburg, 2020", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQeQZkIMy16mD-wmI6PFgewbA2w5i7PMx4QBpuUU_xJbKr7WZhaNekGsfhMW3BJKzOVGAoBRKSt3_KDrdo3JBb3SRHTYCMjd8jnpzyRQ8ZUHQpEaZ84VDM7AGrSwlFBHtUom8XeRFMM962lGpwgum6R2y-S9KdjuLwStn39NUbFi-WnTB6k0xLri7rGBQ/s1092/Afbeelding1_Hamburg.jpg" },  
+
+      { title: "Gathering 2020", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhtOPKDlWLwfvHd_O6JBN4uotZ7AySiET0y1-2BAiK0PRnv9jOMiMrzJ5VzSQMgSRkswOJGdbFNOwPKEW5MXdlWAO60KTTCUDwVSa2cC4wZtHLId9BB6vIY8-SqguwGLNW7HqHVZZgOMZw/s2048/mars.jpg" },
+
+      { title: "Let's go swim, 2017", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhG4ZzBgQ9sR-opGqAqybJsdb0yX5MwiZW6u0NUBKJl5iQHZ-t1AuJflchXyCjxv2vSmicWLesV2S7PNuREi3QdsK7zLup6RgFJU6JHfSXR25BoRZ30K4c7ghpX43joSfPFnUis3pJi-_c/s1600/line_swim_page3.jpg" },
+     
+      { title: "Meet me in the forest, 2016", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBMKqhiHh3Fj4E9jUcVXLaUgj-lW_FhtMlvjklPZhpDjYNnfhIaYI6eDzCNh9zRT-q1xjkPoJ3DKz_Umle9I6x8C0ystRGqscPHKyx1SdT0iCXwBhvz_AmEMDt1ZFpDjEBD7vLeTgLNGU/s1600/IMG_0012.jpg" },
+
+      { title: "Dog, 2011", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJfezKHgL7K-EcjgKB_2v5fZ8ksxZEtz9NMb6Db7vuH6QMEmEIfIk55hZ_dJCVj8pqTgOCjwycolv6D4ews05vm8vn18_SKTmB1VQmJeDMHbjUSDEicXch7ZI20tIugrjJJACdFCib070/s1600/finaljpg.jpg" },
+   
+      { title: "Het Manneke aan den Draad, 2011", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhl0hAUIDygt5qg_6R_yccAxSXU81LuIQB0-b97uLnpqLUaGtc5gIKJWUvrksWZZF4cjAAvzVofdyTTxZuDR23JFPsv0n5s_Ek2hqqzU9ln0ToFNTbaBhCZCViYg8ur2YSr4uPqRVsiOrU/s1600/jelle+kindt_spring.jpg" },
+
+ { title: "Blijf Alert!, 2011", image: " https://live.staticflickr.com/5254/5499261896_df71c264ac_b.jpg" }
+       ];
+
+    const projectContainer = document.getElementById("projects");
+
+    projects.forEach(project => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <img src="${project.image}" alt="${project.title}" onclick="openPopup(this.src)">
+        <div><strong>${project.title}</strong></div>
+      `;
+      projectContainer.appendChild(div);
+    });
+
+    function openPopup(src) {
+      document.getElementById("popupImage").src = src;
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jelle Kindt</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: courier;
+      background-color: #195414;
+      color: white;
+    }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+color: white;
+    }
+
+    nav {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 10px;
+      padding: 0 1rem 3rem;
+    }
+
+    .card {
+      background: white;
+      color: #195414;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      text-align: center;
+font-size: 0.8rem;
+    }
+
+    .card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .popup {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      display: none;
+    }
+
+    .popup img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 4px solid white;
+    }
+
+    #contact {
+      text-align: center;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>JELLE KINDT</h1>
+    <p></p>
+  </header>
+
+  <nav>
+    <a href="index.html">Projects</a>
+<a href="print.html">Print</a>
+
+<a href="figure.html">Figure</a>
+<a href="comics.html">Comics</a>
+<a href="kozine.html">Kozine</a>
+<a href="about.html">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="projects" class="grid"></section>
+
+  <section id="contact">
+    <h2></h2>
+    <p>jelle_kindt@hotmail.com</p>
+  </section>
+
+  <div class="popup" id="popup" onclick="closePopup()">
+    <img id="popupImage" src="" alt="Full Image"/>
+  </div>
+
+  <script>
+    const projects = [
+      { title: "Anne", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiU7eCu4nNsiuK2DtjJaG4gASn8mf85O1tgh_RU2Kc6F3dudteEYu-d96FEnIGgY5Ouvowqu6p2wTRzIndmElIpu5B6HjHVTXTp-7AOGImkGAtkwZWh5Hn0UXHEAxKdFOAILGi_67IaPcgzPAvw0sVfBpJD61qQBjzGojZcCFupEgjKQt9vyAvTpJxsB_k/s3496/20240408_model%201.jpg" },
+      { title: "Eva", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjVt6Ns6XTGMLHWEoJkmLSVfUnzo03HfQCRCg_Xy2QLItQZgizzVuomY0Wyl0GE7Fkij5ElbJEZNtfN529O18U1wWSVwh94GHtgA-YzlhFn0wATKjWwjiL9Ae-xMcPx7p5ZiACKS4WKJKIxReC6CG-KENpw8GYaZsDSLhy3AZ9yPA-fdMSmXgkxwbZEJXo/s3496/20250519_model%20Eva_9.jpg" },
+      { title: "Eva", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEho1uTuadzkIQrBicyKNVd8MJhbOPWS6QlFLgOr0NrQH4_2PqybVThjvpxm8a1SXknvBcKfP72KO8bMJ-HkT_LqVF1uW_jSnR-s7eb5RZmJ8IFxLT_5a0EvMUxmrBkVXcuIFnAJ0jDoep3ZMVKV9rDevX0XuSp0x5qW8aH1xKVP4_hIErYjUuZx4gIa-iI/s3496/20250519_model%20Eva_11.jpg" },
+      { title: "Eva", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYxsRBExLG4z10t1CYA4QIDkMQ5iW3U9RfVGshr6ZGhho6lpQqALVqReEP-1knS7yCfsiDqBH7hEAQK0bI39baLQOc5_yPz1qBb-4zdTU1xLJrFFQJYo35XdTTEmzjY27AJehycZcvJnenx1HyqF-1dkVwP71sIukFZfn0Mvcsh_XOzTVMNbSBz2IcY7g/s3496/20250519_model%20Eva_8.jpg" },
+      { title: "ZaaM Poster,2022", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg2VdOBN32C4reCZLfRL8lfbNmbELpq0feaEB9bkrtJbDEFjnMcJ6V0r5ZFB-WhekpFoyW2FOw8qwo2YnkiT409DBCHUWDugkqOAdmmuEcm7ntQKypL7z1zxDDQCzFqItHqEfnxQj511VGcqpxy2e_cQ9DOunqNHqgdxFwPTEuspQ4RDFT2jPY-WAnK21c/s3478/model2.jpg" },
+      { title: "Bries Article", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4cFZOGpjGQwZBIirLV1AdIxHrKU_NiAzN999X9qp8-0MKl6cKpP4OMDVfmYh_Vi9Gtl_m_FhpVNabC6hcOJua3WbWYqCyTAaRFDjk-Ct9z-vGMOP_umzbkwExPDpisr6Z5bA5WK_M9j3RthNo5O05OB0mOeTgrBWe0iiOWNsCC8FiNUkX24Enjdj8NHI/s3442/model3.jpg" },
+      { title: "Eva", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnlu0RBHolsTa4ZQnfWBNFkhoszc1FSa_E9pTtqEtN3Ah5q53yWDZTn-KoyWzyFnYqdvPN4GPWG61IsJW2Jmli-QRLBRJfiqH2LaTLnHOG5BfWMEaMztaxM_2CqQXo7GhO59ZpLOHnj_1IpTMk6GcNjxAdDPrGlY6IRvIPdWokKoiOONYrfTUyi67peuo/s3496/20250519_model%20Eva_1.jpg" },
+      { title: "Project 8", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgIE6un3ohfKqSZWxb7CXe5u4O60Lke4qeY4epgj9xivyZ0m4e0dVNm8rITEgnKglcadN9d0wM-H0-iLvCI_4JeowPuOGC_si2SF0L7Lh8P6lxe4nOKC-u5ZYH3ZVuZECX7BZhSnNKUSYDCC36PCQ3DyEaOl30NHPRlvlwsAN8U4R2uzaOujdJwazmllyw/s3496/model4.jpg" },
+      { title: "Willy", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4vcrGI5dt_QrT2rb5z_SiI97O_igHTXutPwWWE9UyRbCAh8L483bsofEEFlXb5IPPVIuP77U2oMCyUaqYx4DSROOU81zmOzWjuwLmyM5tt-H5JJNU-5W6sZVioMB9rvzqdNXSrm1LFRuD0T6_aZHE-xB4aX-Nq3QqcJRrbejLoLqIz16KIUNl5dP3qno/s7135/202493willy_1.jpg" },
+      { title: "Dirk", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg0W2CGj0OCJmqkEXKcFbeZN4Yf8Dqt71QMtjB40pn3MfZkg7AZAgLWoQxkvcV0s9HvCaYm4KuOoFRExfSTRA2fHF0NlIihCzeCBcRvmuVbzGJZcTsLmssQ1UAdT_ENCAjvQfN6-Mt4okP-Bf2ELoDVz5hL2cTrbgXpjMMYnPIGv4P9I8NONE7oc2HuhwM/s7004/20240819_Dirk_3.jpg" },
+      { title: "Lynn", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgghhjv2YerahUuvwA4WHLwCgYkYO2LhZfGrMw4iNqjQe20BN-RqrNwDvWscBOlhCnL13aZu-KMtJTMsdlRGHqK_F7CvBZJ0VEF-K-SdqHZWXJ5mZkSc322WilYrTd1U9DEZkk2s0UkmgCN9hAD4A46xUzIbgcL5BNIv6mf7IGdG_bhRzXLGyqDF1mnBOk/s3504/model%2020240701%20Lynn%209.png" },
+      { title: "Lynn", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhdtrwBanLQlV959gXdtVsmmcCx0u2qVEnI39Yvtr5UtE5WcK4g6sFw78CvUTJEJYwuaYiW9AaiVq2yVmEsW5YiDNJjgXK9DUQMXtBE9tXyeiZRZtL1U9mF45XktVpw5Re8BDDea0QC3dOCwfaPE3TT9_7abBhWH4RHD-mAYAOKZv-BBwSHAyVZQi3yu88/s3504/model%2020240701%20Lynn%208.png" },
+      { title: "Lynn", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4Am5TqUnN90iim5Kj3iX1e-mtWp8YrOiqtXYI4uIOfR8_iVNPHTldmRwbY40JPAZ8NsPf29unvqseAz58knBmtqrA2TWGXxCNqgi0tkv-9iOWFTp3cHBOO-a1muNmVM2RJuMbBasAOYrA348TglgS2cB8tEzV4KZcnFRZ25rGKT4KD9sQFZrqR15ujLc/s5324/model%2020240701%20Lynn%201.png" },
+      { title: "Lynn", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEipKDg6yVVDMptLSKx-j-n_ajfr1Pgs70Gj8pwndxXx3eDL5OsDtge5u8e-i5jxwD-k-cDM07Z4FNTu_mEUUPxz5Cb_uYPYnzuJUU9m4IX6-syfF56s1KBzQRPAqOPUvtp0dwAuOo7Zy-jmLr3qLR6bEUzBG6MRHriaBPeSlxzH035sVJGB73P81ogpgbo/s3504/model%2020240701%20Lynn%2011.png" },
+      { title: "Anna", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkGB6avi-jHvwbyZsPPuxoJNScZaZUh4ez4udSK1RhZtq1UtOQX96pBKnQd6F-8aS_L35WxVy1LXE26ea9gX5yF3isJ2k0325SmKon08yzCTiDUSK2RYz7yF7chwTFRTvoOOUuWiB19qmOi2jIVVdrSFm4z2slcyuKmHPjNE4L6p-SaW6B8gLlQON2KVA/s3496/20240408_model%205.jpg" },
+      { title: "Sarah", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi05DpWkLuUA_hEMoIG_xow2BCw4rUw3OL0VX6LoeAdYrGMqWZ3CUCPG6-m1WdeSzHAbF3ihh7ayBuBKXRPVKGwkqU-d_KIY1pJAdMfEYcHhXOwnmWZC9SDdPokM1vurFzBVF1tWZN5ThUP2YNNh6abL-klYBG6799vGHwPCStmb_KaD-BB1h5QQV9eixI/s3496/20240401_model%203.jpg" },
+      { title: "Sarah", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhdiJwJIdbdhCveGiQ2VpYSXnH7wrMlGAzqcBI4YTD-ol6gglpZ7y0ZTIi9xOvEoV93jqiJlpAh1m7S_ftjkxnTK9CVSKTFCQsMXXPCeRP6ezr3eVUkwofiQ5yCYZ3AZ6xDGT_r41MvJhyi0vLhKuJBuRv11njsmiWcLr3yrK0bKF18_IEKtf4jo-Gobwc/s3496/20240401_model%202.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi61yx1MHQucTQUit4sLvkCq3PwUugiLGjysZEs0Xh2REHDGgOB1jGuR-D-C9RzztWXFp3I5gVMc8H_SQg9NQh2QlUx_OwmHrTiUONlDZvScdUSB-AYKNteEx9G0XVGVlMKIG8xNg3aFKtVHZuNa_FhrFqT_3u8zgPYv-jhG5s4s5NXkWZqU5xYuuzv/s3506/model_11072022_08.jpeg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxcG96nKb62RQwKe_hOegNKkp0bGnVJUm52AOOjBOD1rfTUNLUaZjl42bWEBeI7qPdOwztMbEjZ3dwhgOcnsyZL7c8SS1HxXk7j4OsCW_vC05kDw_mwfLCqfzIaxRw8D44ZINj_RO-TFV9gpxhy6LYrLm7EuC0UCNz3SQBALGcsCcAvBuywCBHYf-x/s3506/model_11072022_05.jpeg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgzS8vdBrtvuxdixJKx6QyGhqAVnsgjrvC3te6CM72vhCWUMItr5RPBpawFLkYvnXmTRwQb5ZMZXKq7e7g8DpSVoeOLmctLY3TYtc7tuRu4udIokxcQtGDdsupDtyvdYI6gizc-cXhwXT0RMQ_yJMfnHP8rCRAgm2x6Y1C5kkimJvdLF42Y5_FLDb7D/s3506/model_11072022_09.jpeg" },
+ { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEixzspgHHoWOg3bj8hW-7aTd_hP5hHuA08wYt1i7c8NFBoD4cAuD23DzH742vi5-5BjVXetjYHQomUCx07xBYE9mmgA5z_VtSRzvPPLheRpFTszwDfviivEgN2lT5Bfmuf6I0F016RBu2ehkgtYI5st12Z-N70S9M3rkOcrined37ghQL90ks_BRN6r/s3506/model_11072022_06.jpeg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgljbbjlSt-Ds2WInopLlSm70CTv4dD6JUzk45LmvrLCbcquDUyMvngtdZbyDLEjdd6uG6zhL6b_BSBSxLnp-LBI9bzAU34k0h4C93KqWIvBed8gnqS733D8d6ewHFXdg50wFDVZmRBCPJe-HETPiZjR1AblS3Z5zMUa_8P6GkRtDJC7TN-zAlXPXL-/s5580/model_11072022_16.jpeg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEit7JJWCiq7UpnbVep8n-WAV7sS8DPZSdk0n4BYrx7tJc_Nbe2b8ftiJ0npWUWO5yLQRgiavbRVQGy9axvqY06o1R1kNUNCNVZ-pBbgEvolyGxH7ZeGZLpAPhY4COqqybjq9UNJUV0C-tWIl_Vk9U7EnpwxTRFzzf7m7V95IIp9DZ9NwSLrhAkhDP77/s3506/model_11072022_17.jpeg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhGcVYTM3gQ8cjrR-7WuWZ0v0uTnq4tbA5VyryvEFqeh6S1vsjd854TnPKvhhzeYOATExeqD0MWGVdzOziNtblyLCCX5BxUpvWb2xRqkaPn5mjy3b1ieZNen1kJLh10ed3b2r7_oLOeWophrSlCjRsYytWE4Wia58hgtXrgNGvoMmXqjytTKK10s7Na/s3501/multimodel_04072022_1.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzfseAd1mBra-CnnQMdDpF8lPF0vCaVWb7x-cRplDoYBfZ-z3InvgX2eC7nDbOO3503IiL7ueWfK_Xb8uYS-2w5IIdah8gB_RM993eBZv358h-5qtf5V3YgoFr76nA7qyQzHxfeTMWdXAcXm_ZnsE8ghCnRgTosmCZXLQ35Q-AuZ8lu47C2PmHTpi8/s3501/multimodel_04072022_6.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj5OiZbhSRG6kDyF8vW1BZBnCSkKWLTHNMTX7ISCbga9iiq1THSKBO8RbX7pI77YbGDGXXxpK4ST0EOyUFB_sfckCw8jwcauiQ2jD5EOrKWr6q_loBzRhXQ2DwZKYC0m9uinN9-iUavR3s/s2048/model2.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRFVRUGNc4TKGQoSJOWWNzL6vzAJHkUGZdVs0mcqDZZD0eEWoopE745geNxtx3UqSMJ3H3rdiot2PXr1c19ais3IaQATMSXh0iLm3zfKULgBSpc7lJgBh7y3mWp4_QXFHPpx5g5YsVfRQ/s2048/model1.jpg" },
+      { title: "Michel", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjMcKTYaFHv-VT5DTM3zlQdo5o3x_FX_8a1Ukd4wQUO07XOQ7apH9BQflOM-WvnL7NezmRaPmDFMbMLzks5Ywx7Rqjb5MpKpsGURTURj1Q5AGBjuquMEqBVzao8K8XT5Ow4JK-Fb1XxxNE/s2048/Model_Michel_JelleKindt_27102021_6.jpg" },
+      { title: "Michel", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgh9XUu4NTZ-BVzX1gW1PIN5nLH77snGtRxEDgxxPgLSs3EfjsLZJXBfyf2KbIm5FqqQiddiS3Y5SKvqK2dXavZtcWpjD66IMSIrQErdP0PwY0J7H6JhS2XxK94qcRUnBmBmPwnkrKf0qc/s2048/Model_Michel_JelleKindt_27102021_8.jpg" },
+      { title: "Michel", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhqPkVeNE42YOfHICOBVo7Q-5555P2-dgREmEmyi0WuO8GKku7_CsOdYnsiOOHwAPl5-zRmueVkF5MUp4pXv2jfnKnVj-ihWmBkQmGUmsKKdb2DmyhVQHSeX5q3afa_yfLekKDCFeDqCo0/s2048/Model_Michel_JelleKindt_27102021_18.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhaktWfZMn886PVJDmPnwuAbB_r_p8KIIdQumZLgTARzI6jxEd1z6tc_Yda6o7b5Ear9-6sRs_OKe2ydWNattKh1Z2xQ5iu66u09ZAPOYo5ocsWrz67sYl_dsCP6ygTP8He96cK71pvKGI/s2048/model_jelle_17102021.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg064CJp7J4UdPiIp2n4elNrmN8_L9ZDzpSViLzpsRotj1OcPn8iwclMIxiudydH11Ygbo6bLAYY6jTQtVCHXYnSlpNFMB37JMniyZjHy0G6N8WupiUPg0I7oewgSQTBGDw_FkkW2T0_pI/s2048/model_jelle_17102021_6.jpg" },
+      { title: "Lyudmyla", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSSk41DEscjEf2nOBpDSLlgIQkjJZAZT239hVLepaL0JA91vckHBDWaRNcDIdWGd9-7DjpRQkhAjTHJ-WOewiz2_9fU4q6uY9s2uyBqGQZw-YkqP6EWtYHSeyCTd4UQuQH-CdZm9lBxus/s2048/model_lyudmyla_12102021_8.jpg" },
+      { title: "Lyudmyla", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhztI2zcjZ6nDfU_YxwAlWBKQL_CFs_80PDmsb8X4oy9JSIia5bAcaGjJeifeWyrhnVp8WKx2UCvVfphco-LyskyHwK4WKqibXp1LKnJ9Gp8nqPZWWRe2wIM1GqGPeysDTdTPIiqumwc9E/s2048/model_lyudmyla_12102021_7.jpg" },
+      { title: "Lyudmyla", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5ddkrHSIZxdn0RLkNusIwV8i-pt4KPOOBULk0OflfznFYLO92JzsoUS7GhgyXA1Wv5uQbPAIUPDVCtkU7VrXcMZu-bIelgvhOL3UZBMhN4vMMpIX53wvHj91U7NfD1Dact74HkpDrRI0/s2048/model_lyudmyla_12102021_2.jpg" },
+      { title: "Lyudmyla", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYMhMYJlVKrpJ0oP0ZqzxXRZRuGbVbFlgCHxP-nW_c2tZDYBZbdhaJyZEpt0G5ltR59kMhWFkXrp8NUT9MMY-zsFyFCEyAGJ8QjtOStaYIV42DHTelwlekfGosLk8e16GGhqRVXvru1tU/s2048/model_lyudmyla_12102021_3.jpg" },
+      { title: "Lucia", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhOAWPaIz8SPg4V9NhD6UMqJTY3VQQKdtlqsuOck0pJySbaPDc1bOZMMEVoc22xcTKj95UXn492bzaiuDsOk2lDCliumZNWWy5ZEy2fkN-Dr-qGKOFAuOp6hfgaGpo5VoKSgNTesPbUmzs/s2048/model_Lucia_jellekindt_04102021_1.jpg" },
+      { title: "Lucia", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhXZu5yot2g56K2wyry3Qxo6i_xp8I3RHYhn0tZzYzSdEg5UKYu7y_kWrtWBRp_2fJccZ4gp8bnchaG5lOwCi7emgDdIjaBRZR35UGSVKypSoVLnXvKKD4J-km_UzB9xOgr2PJrq4DnN2o/s2048/model_Lucia_jellekindt_04102021_10.jpg" },
+      { title: "Lucia", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9XYsuUAO6B7RKWQ40DoIjJdnGa7IVhQBoHdWvdEsa9YJmMmBGjgrNwObcd3EMh19c-CLYDBaEEEggVt_zAkZ5g0GSX5MA5vzs9UzMQrj7odB_yheHTbipMBBc8SVNll5rK3vmmhXUH5k/s2048/model_Lucia_jellekindt_04102021_3.jpg" },
+      { title: "Lucia", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRucfis1_EjKqyVyxkTeUQRFiJ2Ihx94Aj9frbNfSHHypOVgsJM9UXBDSmROSpWtHwoz0VNj1nGrdsRcGmwJEm5Ndcnnyedu2igyOLgCyk-XvpP-3OjmcmSb6-fywiaLa7Y-zff0al3ZA/s2048/model_Lucia_jellekindt_04102021_4.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1YSrIrXkogglQfeFKvySfROAa6no6pFh8ASFloO4yciD-k47q8OD7oTdqexeBIDspHR-5O5l3rQvSLL98G1xIDtlZov5ddN_0X0lXaiUQPgWehj6BBmuQLrl9iEfnuQX65cOP7PWAZWw/s2048/model_jacobe_14_jellekindt_15062021.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEidBZZLZz6-JQnj3BrhBw8dUn2Q4tSeABo9v6XOL4Gg71QhmuKr_B-eUgv-egF0U_bk0uyxSi8xD0Gn0bxgik4W81As4i5YwurE3HyRigmekRaG6gG0SeAeWnIPP0J8GadFJbDxvIDEbt0/s2048/model_emilie5_20201005.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPXGYY8dd3xSoNehO1kvxAXPCrV3ekuy12l1IJbGRaDMg6LrNsCKUw969gl0JVvo5cvbXA0H5BWLJtPaQQxsZByVAGcNmZ4jTrJMrmiDoDVFcBVxRRBbcZk2ekhlhL46uS_HHbNySxKTc/s2048/model_emilie6_20201005.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwhRWaL7Oe3GRanaUGXovtVlL8hsDASVwjNXx0NocP3qFDq6XFqQjfvFMqqLtT4sRVL46u8nFdb7iijjAkMIsWOpCVbmptSH568-l2WghHHoDybc1Hk2om4S-ZHb59HuywiLyesaVNGJQ/s2048/model_emilie1-_20201005.jpg" },
+      { title: "Eva", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhILhlre654GI8met2BuylMwmT8aDUjlYlI29LS0rc8f3uMJ7P1URwroLka6muQP-6O1v-dO9HIabCWjdQBhRdSW6bsxI5t4D3KP7VSghosLwE2Qg8xwif-vlSLM-TCl80s2MRMUjUzlaY/s1600/model3_eva_130120.jpg" },
+      { title: "Eva", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1Pqqu-NUO2wLYm9uoGrHuYmaxfPRECbRq7RgltFuQhjUSJ-DX8b6bX5Esqacaq27JwEigKtmFkPa0QoKvmYT2kQbbRxk3jVdiBJQB4z2XGrX2uKQ-sQKGHB8qCpHQWzH4JezxKN86v3k/s1600/model5_eva_130120.jpg" },
+      { title: "Leen", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh3Z80OdaREGqiHU7IwU3jCzuE69CrZ71AYDAaG8T117FZzhXccNaomFyRUF6psB1h1xy5CyAdmMf4Ng49SFN5WAiaw0tq3HK5s0eg4zAAjF5xiH6FWlz8R-VmpU1LIAwY3C9nIAP-7GAg/s1600/Model_Leen1.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjBsQGXPTeStnsCRh9ogx7hK0KKxAD5jgrAZ6o3i4gY7HnXKv1jyYoCFM5foVJDLAXDUEyEgmKwvbqm8eVzGuYNe5BinL70yBF4goTluLYtsfYwlQFJPGAcdaFaAhWfRVYwe6I3uQNGF68/s1600/model_08102018_1.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyrTWCDfRrgEajmnSKzdqy9KoyyEusuQeVHCYCib7LYWzDP9XCCr3_jPAX98UxaTsIhckOIxN9bsdaWsQE2EaXd_dNxJ2VmXPEDKgmOR62yc5kaDoDAPs5wvb_P7U_b9w9e2pE8O6_PW8/s1600/model_08102018_2.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiuggK4j5GKOW5__ieg9p6A-Mk-wu5vwLGfd_JTJQ9LznbwRQt_XpSw-fkSo1xTDFV6tPSo5YtqAFRfNkxkNXb9K4jtEhDc7qHN-vooayxAF1MnE64Y92j4rJyzvUy-lEhfDZv8vO9LIaU/s1600/model_08102018_3.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIDRmsXF6k18rJbSYgaEL8XYCn0ufABBz5mPfKYAeUVMe9oZ2o2BNaMz3qTqZxeZJh5BayKwwYrsf_nYV67GPCGFHEmVeiE5ZLvzE9zMmUoDrg5Uo7aIqDLYUxnS4wDssz0AGAn4JT49c/s1600/model3.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiAIUNWX0IEjIxkwNenQkSCXMX3gnheU8D3kpTwKTAxvo7SvxXj7rGOlPSjAkXuvsrXN3Iw8ctXFnAYiwN_Z0eoktReH9zEtTMnA-1Rh533cb8xauuc7vOGIlQXUBYDA8zjYw-_lSLu-M8/s1600/multimodel64.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg6m_Q-YLiyIDW7jLFcDPHS2Xp_YP4IlTA7FquwCkQKsvbmaCXAg0NrgdOw84Fh4URstWx2uW-XvTJUPPtgpRZnsFFZxKPFMBXNdXqZVY0_0feqW6UmuVqDR0Jqe4guJDJwrzb9KNC378s/s1600/jellekindt_model64.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgapBCVyAjtkCpg9MxDmkrHjIjbP8cV0TniTRphwF8trIa1F9z1ZlB1TUB7S2AW8OT0HnN-FAU0APb8DKDKXtQD_P8OTUGaWsVinZwlMBdQSJu8DM1rVvA5vp5bhMVaN6VRyORyCWfoibc/s1600/wintermodel4_4.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgapBCVyAjtkCpg9MxDmkrHjIjbP8cV0TniTRphwF8trIa1F9z1ZlB1TUB7S2AW8OT0HnN-FAU0APb8DKDKXtQD_P8OTUGaWsVinZwlMBdQSJu8DM1rVvA5vp5bhMVaN6VRyORyCWfoibc/s1600/wintermodel4_4.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiSaFzPi5jmyEocO1f04ZRi__s9xOGT75ECZY5eIytxOLNTz8xaNw9o-Spcqbm3u0Lrjzt8W5Ls0ww8oZAcKKvd5_mQT0bUTrhcrn8N5kE4ucJnC9jLO_qJmGAgSyGL_MpcsBKRmzqkLpE/s1600/wintermodel3_1.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0mC-TZBppUblSqT2n_B6OHmZeaxdkQmaarm8IUEEsB8GmVyMNUESmrswoaui9qUKBuXGXLnm_boYR8R5kqvoAX_0THgWuWigy0wpOM5bw1_gU5_TsC-O8Z1ZIcFFK4HWtn1oSPIjh1ko/s1600/herfstmodel13_9.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVjQ0ez4ZVB16GZu4BcNUDKRt-ZsM-Idyxt_GHtiaRS7Txb-48auX_1ArYTmUWoTQw_xk74HrRMIueJeRk1mgQtPJXsWdBepYtTkMlyG6Tmg9cnpJN0PE0y-PwhbWN4BHxic7Rku6A4SE/s1600/herfstmodel8_1_jellekindt.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg9cBBTGNtV5v9EdmTHuzTECQLJ9JO1Iaeg9nrupSgJegcPvjjcDf5eA2uz6C_ABDeG62V0E7LhAlu72MCH2034OAw76A3YhtHtERri0Y9z51tjzQ3WUvoy8Uu3yb2dK2TFddkmXlQQY3A/s1600/herfstmodel8_1.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhbuTVOK1hfUZu5kvd922V0GWbiJ_G4NVarYlVcYtmDLhu9GrQG6Em4WUz_HD2Flxamx1rOM41z-kLvFgW8G4CFfbpPeRU6DKkvqkKv1HZCDBmx6ABUhrQfwTBIP3VF_e4oKYr9G0W-EM0/s1600/herfstmodel4_6.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhYRytv70Ln0gcuZZDAHIJRVyAnIhG3cdctqxvthKcIlZeA9vssolVy-0CTC3fMnTg9CJlzq3JsupT5C-hTLWnZHa_JfdTv8L5Ba0q3alMUz4Ykl53U7tI1UAk241ZgqMcxybt_7c3AWDI/s1600/herfstmodel4_2.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj5RyN0PSalZPVY0NbAg9B7x16A64uP78c0HZJjZjvvx5fHZi1K7i1EdrUmT80AIpmqZm_yDgwC4HYeogs55Vev4M-HixRuUoE3cn4k9LRPAlhTtsevd49FiKzio9v5buDYw-tnvdtyoE8/s1600/herfstmodel4_7.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEijnrb4jaK0bXNB5MBXG2VfEsd901OQyOkcP01wdzMhvwQEh6f6t_EJYageC4buD0s6hsvkW9bGL13emBq-vE1WoWBSpiHZxB3f1WpyNmeERrqJKbkKmtB1RURjWVGWjW1k_CDFI83CifA/s1600/herfstmodel4_5.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwtvJ5IOhHLu4T74qxoBlNp31HolNvrYMOU6mJ7qtkTuuQr4PgAsaSMlvUu3ndRScN-wVvSNY4Yb_5p4BBfVpsDWvP7BlYiNUhlr7lGqRvIt7n5w7e-2uJSSDVcGR2uFzscV3zy7bPlkc/s1600/zomermodel12_7.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUrF8ztjnY6JT7JbEmBAu8x3chIm5BTLTozH9lE9-euuo6jaqfDmNFPzafOQJZIg0pXeHs5-4EINrseVsHTcrtki8GJYrAsRdyuVWcJuSAjgvgCjZggqsJ5haM2jvNgyT0j0owPQkA0dk/s1600/zomermodel12_6_jelle+kindt.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEivTaedOxbohcxPji9Ft2s55F79x8yXwzFlnABzel9UmTunAH76oUmhiH816uzcAT1RYNwDhXkcd007zDt7s_puelOWXXXzerQ5GW3LbUBcHRj9_GzUIuXkSM62EfI3KnErlCdCeXRecCA/s1600/zomermodel12_1.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi0Our-wV1vuglIf4j7veLtXoXcrU5XqycIy_2bDx9aR1ltiEf9B1R7PrrJOZNKEk-JPF0b4Py5swmDW_CEjP-UbqBb0XW-bjcddTocuIkYTjDClTgGFxTYWRusoEjE7fhCNOWTx6zpvmc/s1600/zomermodel10_04_jelle+kindt.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjChuxLnzn7Z5D3gVGinLEQzZtgPbqEJC1k5S66u8NcSrLBQTXuCUKBiSG5auF4uq5oXgpFjbs0F8CsytKjIqf9atUcMXRip4MD_VCnogwcAKqKouDYvSJWpGfdcN8I2hV-vkpSGTqdzuI/s1600/zomermodel10_10_jelle+kindt.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj3aAF55BUSoh_q2QHLyZ1cF4WEed_WPOgau9QNIrrpPSo3qZWoMxVR8UUR2YIMkjXUh8kK-VYO5Wne2EgB0LI0OV-NHUWiEI0O9derlfBcgKMsheTD4JZ2MvEmkZcyZjSHJNVhtWttros/s1600/zomermodel10_02.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjBf4C1gpjkapcKRSIsIO6CBPsIOMsCHmpmcHtwvk73tfEkRzyl9wQa6zHmbQQfLqOtQD1dt3l4PCl9xV0z6vm3CqTGyI3YZkvfhl_ZgmaysJOHeePx_nJVDzbNY5QDLCNNmQAxbLxUIOE/w681-h963-no/" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiTbIxFkd2ldPnnBeS4-mhCTzaQkxtBVgO_rnPR4T6AcgzyiL7kwl1b6W93zo53VCiNkFHN5Ri0OgYP1dT-Mpk-OJqUE20J_FPyE3uQ0IjiA2Eik-Hb26CzAL1JQi8tTiCnGIk-Ag3PO1c/s1600/IMG_0002.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_a5AlMeNuMWU_19RrvAjvBGCeP-9J2zWBN8AfdRjDEGfLAdCGqDwsRhOkLcNmKk70TbEeshdp2jn6h6LEeFMHkU9nNMzKyMBee5oi8QVGJUNO_SrYO5dior9q3eHiT9BGIcRpQS-jBZE/s1600/IMG_0004.jpg" },
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEirgCKUEuZgLF2oYQeQSYDbHFbNLpFjNVoSaIC67roUbgAQnfKKQ5SkCRJnFNl_oYyAod89cxJI8E4dc6vzbTDN8bkL56gPDNqQKpEHqJGi1bRj4G5bB3qTEZHJIp7NkA2JsueFuCm4zZI/s1600/IMG_0001.jpg" }
+    ];
+
+    const projectContainer = document.getElementById("projects");
+
+    projects.forEach(project => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <img src="${project.image}" alt="${project.title}" onclick="openPopup(this.src)">
+        <div><strong>${project.title}</strong></div>
+      `;
+      projectContainer.appendChild(div);
+    });
+
+    function openPopup(src) {
+      document.getElementById("popupImage").src = src;
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

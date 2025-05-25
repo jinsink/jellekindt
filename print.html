@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jelle Kindt</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: courier;
+      background-color: #195414;
+      color: white;
+    }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+color: white;
+    }
+
+    nav {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 10px;
+      padding: 0 1rem 3rem;
+    }
+
+    .card {
+      background: white;
+      color: #195414;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      text-align: center;
+font-size: 0.8rem;
+    }
+
+    .card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .popup {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      display: none;
+    }
+
+    .popup img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 4px solid white;
+    }
+
+    #contact {
+      text-align: center;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>JELLE KINDT</h1>
+    <p></p>
+  </header>
+
+  <nav>
+    <a href="index.html">Projects</a>
+<a href="print.html">Print</a>
+
+<a href="figure.html">Figure</a>
+<a href="comics.html">Comics</a>
+<a href="kozine.html">Kozine</a>
+<a href="about.html">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="projects" class="grid"></section>
+
+  <section id="contact">
+    <h2></h2>
+    <p>jelle_kindt@hotmail.com</p>
+  </section>
+
+  <div class="popup" id="popup" onclick="closePopup()">
+    <img id="popupImage" src="" alt="Full Image"/>
+  </div>
+
+  <script>
+    const projects = [
+
+{ title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgjMbTFaafwMEiOZPV-uz9QRHVy4xjkG8NtioVmOQr55SpQO0bEpSnlsEptT_OdaYO5YkTn3QlXoEZLiJgc23RtOZo8FnykoQ955b-BFJKpQsxqlycWrZAdlgrD0vHga3hRqV3E52Y2ORt88g019vwEoXvSsBktXJWIk7Gn7JMGEYP2PWwac_aQb8ZzJw/s4488/jellekindt_tuig.jpg" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZPteWplMV52W_M-tE_mLeJcDB9zcHZeLVGBQN0Ltbf5HgYXxYG0aGvRniwBmAdK2COwz6_o9lPlhjNi0zOLwWpd0yiGjBLcSvavO5zVQrndHOOILGngaj7euD_hJcE9tdzeIwl-LyAc0/w976-h674/jellekindt_sketch_raw.jpg" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiexMFay48o6_Ul8CfVd0gHX3VG6IMNt8xHxTtNSjgrrqwKlXh3nLAxZo3qSRSmns2aOyKxXBs0aLEoKWerd0ZZ1a73Uv17yeEnwjzKawiw_GQTZcyTKGWTxlueBxDdNfCKp-_BbQ_ySeP3xXGGAO5ucKNvJpySz-lnz4RjE-mpWCQcRiYz2PrZ4dHV/s3530/tocht_small.jpg" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwM0u0Zvnj_lCQZR-hJX1c43k69mdsohl3swzMlfJxOcOla684GOLK4oMuSNQjX5isajz6sfFtGiZ3IQkHtdNkKHMLElJzdGjTeXC_bIHLm1CQXFjSe8EUvnerZHUnDB1d1aRenO5ZRgg/s640/red+boy.jpg.jpg" },
+     
+ { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj3LtiSwVHOPSoKcVgpDghXRnEdjY4hJpQMhanrGYYj15KhoulQMS1Hu4x1BAHQtb-BWYTgiv95nwQZ0RDodMlT8xgdW4VaPdhO3Na7stBrdOE3oRWIqS6H8GMWd-0xCknZl68bY7lhl9I/s1600/IMG_20180114_110106_265.jpg" },
+
+{ title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjPBTLXEAvDd6Yoc4cyxb-i6rqgBAhbuHf11KyvC43AHlMmEH3V7YIwDm8mpWEnWcDSm9B_V8I5njZcIdHjfnF6T5Jf_WdhkZWotmeTcLTKoSZ53v-IOzcw1uIEKwc40_V53_To3N_DT6MjDikJUpVbYVCf8itNQncgBirnz_8zWkxiLA75CSt12jo7e9E/s6492/hert%20groot.png" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEji3ekkR15oxZ1iwEIdY9I9fxINjY1H39yLumUKHMEdCgs26wFQ89Nq6ztYYxQe14DKDQs0BptX3E6ExmrmJrQHCnq1UP-ImuZb7yM5jwnZOo2--z7X2fmZfp0B4EA5W8B9opXLBrnx7RqgVxVHjirPlAvj58l6PE2oYh3XxrYH6TN4itbkNjgqO-D7/s6931/zaam.jpg" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhEiz5Vn2b8NOF5MBQ90yPb5j5tx9DIkwG2IHMj7y6NzX7gxM3S9ek4cwiVbKPb_pjRXwriy3fIxf6FFBH3tQdcx6L0tY-V1sGQ3IQV81hW0cODZr7Xf460DFd1j2oi7XCigxh8LV341Yg/s1600/hyena.jpg" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglm6MX7nVleQ-CL1Ty8cNFrHX78cfPVQDaf3GGz6Ponc7pm8zXV5LISiqL5B-eEhK3ldDWPVcSls1gt3dyj_A-6yCcmxJrPur4g9C8xG9Vt1sHhcatx3M-z3tfBMu9joIEm6K67wT2hao/s3077/gathering_jellekindt.jpg" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhtOPKDlWLwfvHd_O6JBN4uotZ7AySiET0y1-2BAiK0PRnv9jOMiMrzJ5VzSQMgSRkswOJGdbFNOwPKEW5MXdlWAO60KTTCUDwVSa2cC4wZtHLId9BB6vIY8-SqguwGLNW7HqHVZZgOMZw/s2048/mars.jpg" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgN0iQakvyS0zjJFYxwUduU9Tw2sGIyzxcixz3OTff4QxeZRrSPWVLKOfxkRXk9Lfa6tLE4ATu7H5h06pNSVdrlpfopJt8V1FPrE6PaA9OcGUEF6-ULkSAjPMVWFOED7fXkRtF_UNHmg9M/s1600/31542915_1841367759254577_9051235133520084992_n.jpg" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgasitO9wATaYCx1dTLM2d5bxUtLCiGxgvL7ZbmwXUKLt5ZaOSPnNTBEQ8lNW33HEwTqsd7xNBj3LICbiQb-_LD9dmbWkbsYUjxDKgGIC06-8eD-MoGsvHugADX3WyKVmg5pTwTMurrjWw/s1600/identity2_jellekindt_faceb.png" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBMKqhiHh3Fj4E9jUcVXLaUgj-lW_FhtMlvjklPZhpDjYNnfhIaYI6eDzCNh9zRT-q1xjkPoJ3DKz_Umle9I6x8C0ystRGqscPHKyx1SdT0iCXwBhvz_AmEMDt1ZFpDjEBD7vLeTgLNGU/s1600/IMG_0012.jpg" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWi-3PriAs1-e-yccV5LUJN_lqKa1YjK1bC17joq2ccyCJExqWbpD_HmICQFRZJvPhRXszTxTTVCTk3F3Ykxcxm4IjCL1K_DHAudbGtA3nBJidpUUKbr_xk8ehMNkQGHJXVCt45dQuWto/s1600/head_piece.jpg" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjb6rU0hVe2mmkJzOYgxkVuMeSDMgkeYG6htudBxrBmtyktR33WzZVsHHUu8MTgRgV_06aks4ylyBeP9z8EPA3cfsczhWYV5wJjAirb89gmYWEBOd4d1i2CTt_rQ5unMMklSDqiiX0u4U4/s1600/jellekindt_comic_art_.jpg" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-mCXRWMT0LrLAMJ21BG0U2c7vLZcZ9tp9ZAPpxZtog46qvgQp-ODjMFFVkgVg2iNxb4GSCUAq_HHXViCGe42gyVS3Tb8EYNXIMxWgpKUb_w6NyXM6R08OpzP_LzcuPrZguHYiLredoYY/s640/si_jellekindt.png" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwPAdfeaJgfy6W_cpOQCGKKQUi5OFWGp7_8RR3l-EXQO5bISoJVarlLhqPI1b0JmLOIGW38rtf0wIFsjx6aEn-GMZjEc1VOwgUOm0-fdP9LUZZaMNl1s1rpqgLZatSGKTKouE_fcbwKK4/s1394/Kindt_jelle_1.jpg" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiRWc7EL037HdYIYQJaOOx_uR2_8ShTRdLBPb5rt6AT7gWvXlIDhRuYNB7LYC7j06sjbQxeHtuJFwn4YFDhoTMKPmlPl7Re6Pyy9ZkY_YKDCfHUhEURRh07DiN2kHQtX8YCs1ZOeX1FVcs/s1432/more+of+this.jpg" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgMzSmdWdw7kOZqzDe6-xaU0jkh0H6MRLXOiKLbPeFNjDej8T0jZ2NHvPjFxZzFEXzarMRBGbuisODQyAvkjoM0kf_tVkZOQORi6c66OX4jxdX5Y4MvIxbf1QKtjc48oThmQQfyMSNVQqE/s2048/jellekindt_nobody.jpg" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEijIsO-8MQ-XRX93ugRbpYPB28QMTWEqtjLYf2Ak9C-2clytw2bOOifNrWq9HP7npLRn7UFpACKibCqyIrTh6KbvRLIaRCNavyQchVOhKl7BU8rmOtgkoP7RM2hplJly3j1fpMbsv_Ig6mqCsFPW-9u7Le8NJYD4tBzmTyVdsFJ4bjj1Urvt-WHCMwk/s3508/runbig_small.jpg" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhbcMXOvj_CoTSf0PZ2gXE63FQOTMSfwC9YdsS1pXlMCJ9hgL1vUtagVXJc-HY8Kc6_WDcPy3qco0SGGwCcAUfZk6k6orBeBXuLWO_VzYu3mjj5HIcq-ZTXJ0XBEG30AZu9hLNK2OHZY0hXLFBt5S5LZOD4mzjylKHdypDNshN5k5A6Tgb7aCyeEJ8N86E/s3496/after3.jpg" },
+
+{ title: "Tree, cyanotype, 2021", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhCkmQ601L64N-vETBax0pTPgtQ-o8Yz-RqyhDvb71VvMJFuL5hMB7n8OsEWwZp634ySZItItwfL2dy2nHU63OoZd5Jy4xo8Qu6sNg7hDKexdY-kVLMulFrnkBb8QHa15gDfAI2D8iLxMMIPBH3en_XHZn6XYmjZ96NaWmzwvlXYrdmDQPln74TQWlQPF0/s4924/Jellekindt_tree.png" },
+
+      { title: "", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjoAU4beG9SZLVM2t61cCdKehtZ3flKZFoApEfLUTtmnZkExEP9YpW9xo8LcqjaJSXrkBJ6pmPh8XK5mVusZGjv_5T7Ng5JKxWAM5IC9PNIKAgPpHUy0UdB1FPrqj_apUm7yY_9IOsMcJwLWN_hFOmUaSSAr_DKuQOHwMJ_vjVbs9WjLOObRpdelFJEDAo/w640-h454/jellekindt_deer.jpg" }
+    ];
+
+    const projectContainer = document.getElementById("projects");
+
+    projects.forEach(project => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <img src="${project.image}" alt="${project.title}" onclick="openPopup(this.src)">
+        <div><strong>${project.title}</strong></div>
+      `;
+      projectContainer.appendChild(div);
+    });
+
+    function openPopup(src) {
+      document.getElementById("popupImage").src = src;
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

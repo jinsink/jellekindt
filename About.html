@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jelle Kindt</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: courier;
+      background-color: #195414;
+      color: white;
+    }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+    }
+  header h3{
+      text-align: left;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+color: white;
+    }
+
+    nav {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+      gap: 10px;
+      padding: 0 1rem 3rem;
+    }
+
+    .card {
+      background: white;
+      color: #195414;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      text-align: center;
+font-size: 0.8rem;
+    }
+
+    .card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .popup {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      display: none;
+    }
+
+    .popup img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 4px solid white;
+    }
+
+    #contact {
+      text-align: center;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>JELLE KINDT</h1>
+    <p>Jelle Kindt (1981) is a Belgian illustrator and screen printmaker based in Antwerp. 
+Kindt studied at Hogeschool Sint-Lukas in Brussels and has since established himself as an artist.
+His illustrations and prints have been featured in exhibitions and publications. Notably, he is the creator of Rhizorama, a zine published by Knuts/ Extrapool (NL) in 2019. 
+Jelle Kindt’s drawings tend to wander off the beaten path—much like their maker. With a raw, spontaneous style (often involving lots of pencil smudges and the occasional charcoal mishap), his work tiptoes between the real and the imagined. Inspired by ancient cultures, metaphysics and the occasional weird dream, his images don’t shout out their meaning—instead, they quietly suggest, shrug, and let you figure it out.</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Projects</a>
+<a href="print.html">Print</a>
+
+<a href="figure.html">Figure</a>
+<a href="comics.html">Comics</a>
+<a href="kozine.html">KoZine</a>
+<a href="about.html">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="projects" class="grid"></section>
+
+  <section id="contact">
+    <h2></h2>
+    <p>jelle_kindt@hotmail.com</p>
+  </section>
+
+  <div class="popup" id="popup" onclick="closePopup()">
+    <img id="popupImage" src="" alt="Full Image"/>
+  </div>
+
+  <script>
+    const projects = [
+      
+   
+{ title: "Meet me in the forest, 2016", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBMKqhiHh3Fj4E9jUcVXLaUgj-lW_FhtMlvjklPZhpDjYNnfhIaYI6eDzCNh9zRT-q1xjkPoJ3DKz_Umle9I6x8C0ystRGqscPHKyx1SdT0iCXwBhvz_AmEMDt1ZFpDjEBD7vLeTgLNGU/s1600/IMG_0012.jpg" },
+
+      { title: "Tree, cyanotype, 2021", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhCkmQ601L64N-vETBax0pTPgtQ-o8Yz-RqyhDvb71VvMJFuL5hMB7n8OsEWwZp634ySZItItwfL2dy2nHU63OoZd5Jy4xo8Qu6sNg7hDKexdY-kVLMulFrnkBb8QHa15gDfAI2D8iLxMMIPBH3en_XHZn6XYmjZ96NaWmzwvlXYrdmDQPln74TQWlQPF0/s4924/Jellekindt_tree.png" },
+        
+{ title: "ZaaM,2022", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEji3ekkR15oxZ1iwEIdY9I9fxINjY1H39yLumUKHMEdCgs26wFQ89Nq6ztYYxQe14DKDQs0BptX3E6ExmrmJrQHCnq1UP-ImuZb7yM5jwnZOo2--z7X2fmZfp0B4EA5W8B9opXLBrnx7RqgVxVHjirPlAvj58l6PE2oYh3XxrYH6TN4itbkNjgqO-D7/s6931/zaam.jpg" },
+
+      { title: "Gathering 2020", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhtOPKDlWLwfvHd_O6JBN4uotZ7AySiET0y1-2BAiK0PRnv9jOMiMrzJ5VzSQMgSRkswOJGdbFNOwPKEW5MXdlWAO60KTTCUDwVSa2cC4wZtHLId9BB6vIY8-SqguwGLNW7HqHVZZgOMZw/s2048/mars.jpg" },
+
+      { title: "Blijf Alert!, 2011", image: " https://live.staticflickr.com/5254/5499261896_df71c264ac_b.jpg" }
+       ];
+
+    const projectContainer = document.getElementById("projects");
+
+    projects.forEach(project => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <img src="${project.image}" alt="${project.title}" onclick="openPopup(this.src)">
+        <div><strong>${project.title}</strong></div>
+      `;
+      projectContainer.appendChild(div);
+    });
+
+    function openPopup(src) {
+      document.getElementById("popupImage").src = src;
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

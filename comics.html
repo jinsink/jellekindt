@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jelle Kindt</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: courier;
+      background-color: #195414;
+      color: white;
+    }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+color: white;
+    }
+
+    nav {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 10px;
+      padding: 0 1rem 3rem;
+    }
+
+    .card {
+      background: white;
+      color: #195414;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      text-align: center;
+font-size: 0.8rem;
+    }
+
+    .card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .popup {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      display: none;
+    }
+
+    .popup img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 4px solid white;
+    }
+
+    #contact {
+      text-align: center;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>JELLE KINDT</h1>
+    <p></p>
+  </header>
+
+  <nav>
+    <a href="index.html">Projects</a>
+<a href="print.html">Print</a>
+
+<a href="figure.html">Figure</a>
+<a href="comics.html">Comics</a>
+<a href="kozine.html">KoZine</a>
+<a href="about.html">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="projects" class="grid"></section>
+
+  <section id="contact">
+    <h2></h2>
+    <p>jelle_kindt@hotmail.com</p>
+  </section>
+
+  <div class="popup" id="popup" onclick="closePopup()">
+    <img id="popupImage" src="" alt="Full Image"/>
+  </div>
+
+  <script>
+    const projects = [
+      
+      { title: "Meat the Real Me, p1", image: "https://komikaze.hr/wp-content/uploads/2019/04/Meat-the-real-me_2_page1.jpg" },
+
+{ title: "Meat the Real Me, p2", image: "https://komikaze.hr/wp-content/uploads/2019/04/meat-the-real-me_2_page2.jpg" },
+
+{ title: "Meat the Real Me, p3", image: "https://komikaze.hr/wp-content/uploads/2019/04/meat-the-real-me_2_page3.jpg" },
+      
+{ title: "Meat the Real Me, p4", image: "https://komikaze.hr/wp-content/uploads/2019/04/meat-the-real-me_2_page4.jpg" },
+
+{ title: "Meat the Real Me, p5", image: "https://komikaze.hr/wp-content/uploads/2019/04/meat-the-real-me_2_page5.jpg" },
+     
+{ title: "Meat the Real Me, p6", image: "https://komikaze.hr/wp-content/uploads/2019/04/meat-the-real-me_2_page6.jpg" },
+
+      { title: "Meat the Real Me, p7", image: "https://komikaze.hr/wp-content/uploads/2019/04/meat-the-real-me_2_page7.jpg" },
+     
+      { title: "Meat the Real Me, p8", image: "https://komikaze.hr/wp-content/uploads/2019/04/meat-the-real-me_2_page8.jpg" },
+
+            ];
+
+    const projectContainer = document.getElementById("projects");
+
+    projects.forEach(project => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <img src="${project.image}" alt="${project.title}" onclick="openPopup(this.src)">
+        <div><strong>${project.title}</strong></div>
+      `;
+      projectContainer.appendChild(div);
+    });
+
+    function openPopup(src) {
+      document.getElementById("popupImage").src = src;
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
